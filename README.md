@@ -31,6 +31,12 @@ MusicWiz is a single page web application that was designed to provide users the
 searches on the MusicBrainz database using a simple user interface. The user interface is implemented using AngularJS,
 HTML and CSS.
 
+![alt tag](https://github.com/abhishekakumar/MusicWiz/blob/master/WebContent/images/SearchBox.png)
+
+![alt tag](https://github.com/abhishekakumar/MusicWiz/blob/master/WebContent/images/PieChart.png)
+
+![alt tag](https://github.com/abhishekakumar/MusicWiz/blob/master/WebContent/images/BarChart.png)
+
 ### Service Layer
 The user interface interacts with the data using a set of REST web service endpoints. REST web services used in the application are developed in Java using Jersey framework.The Java code interacts with Jena using java application interfaces provided by Jena. Jena provides application interfaces only in java programming language.
 
@@ -39,6 +45,7 @@ The music data in RDF format is obtained from LinkedBraiz. LinkedBrainz project 
 data in linked data format. MusicBrainz is community supported where metadata about music is
 crowd sourced. MusicBrainz provides these data as open source to the community in form of relational data
 in PostgreSQL database. LinkedBraiz converted these relational data into RDF data using D2R mappings.
+![alt tag](https://github.com/abhishekakumar/MusicWiz/blob/master/WebContent/images/DBdiagram.JPG)
 
 ## Free Text Search
 The comprehensive search functionality is developed using Jena’s special text search feature. ARQ is
