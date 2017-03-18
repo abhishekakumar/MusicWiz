@@ -18,3 +18,29 @@ data like “Which song was composed by Coldplay and performed in the year 2000�
 using table joins as in relational databases or using key word matching as search engines like Google and
 Yahoo, but are generated using metadata available in structured RDF form. These kind of queries allow us to have greater knowledge from the data. In addition to searching for music, the application also provides
 a dashboard of top artists and trends of albums.
+
+## Architecture
+MusicWiz is designed on the three tiered web architecture. Three tiered architecture is a client-server architecture
+pattern where the user interface, application rules and data access are separated. Developing the
+application in three tiered architecture provides modular design and allows us to separate different layers
+of the application to use different technologies. This helps to choose the best technology for the particular
+layer and each layer can be updated independently in the future if needed.
+
+### User Interface
+MusicWiz is a single page web application that was designed to provide users the capability to do complex
+searches on the MusicBrainz database using a simple user interface. The user interface is implemented using AngularJS,
+HTML and CSS.
+
+### Service Layer
+The user interface interacts with the data using a set of REST web service endpoints. REST web services used in the application are developed in Java using Jersey framework.The Java code interacts with Jena using java application interfaces provided by Jena. Jena provides application interfaces only in java programming language.
+
+### Database Structure
+The music data in RDF format is obtained from LinkedBraiz. LinkedBrainz project publishes MusicBrainz
+data in linked data format. MusicBrainz is community supported where metadata about music is
+crowd sourced. MusicBrainz provides these data as open source to the community in form of relational data
+in PostgreSQL database. LinkedBraiz converted these relational data into RDF data using D2R mappings.
+
+## Free Text Search
+The comprehensive search functionality is developed using Jena’s special text search feature. ARQ is
+the query engine of Jena. An extension to ARQ combines text search and SPARQL allowing applications
+to perform free text searches within SPARQL queries. The text index was built using Apache Lucene. MusicWiz performs indexing using Lucene built inside Jena Fuseki. An index is built upon all the data in the rdf stored in Jena TDB. The text index is additional information along with the RDF data. The SPARQL query first scans the index to find the search string and then returns a reverse mapping to RDF URI triples.
