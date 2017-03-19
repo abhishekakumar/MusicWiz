@@ -13,7 +13,11 @@ import javax.ws.rs.core.MediaType;
 import com.musicwiz.bt.SearchResult;
 import com.musicwiz.dao.MusicWizDAO;
 
-
+/***
+ * The REST web services implementing different data requirements
+ * @author Abhishek
+ *
+ */
 @Path("/Music")
 public class MusicWizService implements IMusicWizService {
 	MusicWizDAO dao = new MusicWizDAO();

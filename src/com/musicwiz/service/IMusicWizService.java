@@ -5,6 +5,11 @@ import java.util.Map;
 
 import com.musicwiz.bt.SearchResult;
 
+/***
+ * Interface for the REST webservices.
+ * @author Abhishek
+ *
+ */
 public interface IMusicWizService {
 	public int getCount();
 	public List<String> getGraphList();

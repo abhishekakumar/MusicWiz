@@ -12,11 +12,19 @@ import org.apache.jena.query.ResultSet;
 
 import com.musicwiz.bt.SearchResult;
 
+/***
+ * Data access class which interacts with Apache Jena DB
+ * @author Abhishek
+ *
+ */
 public class MusicWizDAO {
 	
 	public static final String connection = "http://localhost:3030/Music/query";
 	
-	
+	/***
+	 * Return the number of records in the database
+	 * @return int number of records
+	 */
 	public int getCount() {
 		int count = 0;
 		String query = "SELECT (COUNT (?subject) as ?count) WHERE { "
@@ -32,6 +40,10 @@ public class MusicWizDAO {
 		return count;
 	}
 	
+	/***
+	 * Get top artists based on the number of releases of each artist
+	 * @return map containing artist and number of his releases
+	 */
 	public Map<String, Integer> getTopArtists() {
 		Map<String, Integer> topArtists = new LinkedHashMap<String, Integer>();
 		String query = "SELECT distinct ?band (count(distinct ?o) as ?Number_of_releases) "
@@ -58,7 +70,10 @@ public class MusicWizDAO {
 		return topArtists;
 	}
 	
-
+	/***
+	 * Get top locations based on the number of releases in each location
+	 * @return map containing countries as key and number of releases as value
+	 */
 	public Map<String, Integer> getLocations() {
 		Map<String, Integer> locations = new LinkedHashMap<String, Integer>();
 		String query = "SELECT distinct ?place (count(?place) as ?number_of_releases) "
@@ -84,7 +99,10 @@ public class MusicWizDAO {
 		return locations;
 	}
 	
-
+	/***
+	 * Get top labels based on number of releases
+	 * @return map containing Labels and number of releases
+	 */
 	public Map<String, Integer> getTopLabels() {
 		Map<String, Integer> labels = new LinkedHashMap<String, Integer>();
 		String query = "SELECT distinct ?label (count(distinct ?s) as ?num_of_releases) "
@@ -110,7 +128,10 @@ public class MusicWizDAO {
 		return labels;
 	}
 	
-
+	/***
+	 * Get top releases based on number of tracks in each release
+	 * @return map containing release name and number of tracks
+	 */
 	public Map<String, Integer> getTopReleases() {
 		Map<String, Integer> releases = new LinkedHashMap<String, Integer>();
 		String query = "SELECT distinct ?record ?trackcount "
@@ -135,6 +156,12 @@ public class MusicWizDAO {
 		return releases;
 	}
 	
+	/***
+	 * Get search results for simple search strings
+	 * Simple search strings are those which don't have many predicates
+	 * @param searchparam search string
+	 * @return triples containing the search results
+	 */
 	public List<SearchResult> getSearchResults(String searchparam) {
 		List<SearchResult> searchResults = new LinkedList<SearchResult>();
 		String query = "PREFIX text: <http://jena.apache.org/text#> "
@@ -166,6 +193,13 @@ public class MusicWizDAO {
 		return searchResults;
 	}
 	
+	/***
+	 * Get the search results for a complex search query
+	 * Complex search query involves multiple subjects and predicates
+	 * in different triples
+	 * @param searchparam search string 
+	 * @return triples containing the search string
+	 */
 	public List<SearchResult> getTextSearchResults(String searchparam) {
 		List<SearchResult> searchResults = new LinkedList<SearchResult>();
 		String query = "PREFIX text: <http://jena.apache.org/text#> "

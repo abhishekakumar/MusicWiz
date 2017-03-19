@@ -2,6 +2,11 @@ package com.musicwiz.bt;
 
 import java.io.Serializable;
 
+/***
+ * Class to represent search results triples
+ * @author Abhishek
+ *
+ */
 public class SearchResult implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String subject;
